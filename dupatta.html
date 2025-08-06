@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dupatta Collection - Tradi_O</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="cart.css" />
+  <link rel="icon" type="image/x-icon" href="./img/logo.png" />
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <nav>
+    <a href="index.html"><img src="./img/logo.png" width="100" alt="Tradi_O Logo" /></a>
+    <a href="cart.html" class="navCart" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+      <img src="./img/cart.png" width="55px" alt="cart" />
+      <h4>Cart <span>(0)</span></h4>
+      <span id="cartSubtotal" style="margin-left: 10px; font-weight: bold;">₹0</span>
+    </a>
+  </nav>
+  <section class="feature" id="feature">
+    <h1 class="heading"><span>Dupatta Collection</span></h1>
+    <div class="box-container" id="productList"></div>
+  </section>
+  <footer>
+    <div class="foot-panel1"><a href="index.html">Back to Homepage</a></div>
+    <div class="foot-panel2">
+      <div class="logo"><img src="./img/logo.png" width="100" alt="Tradi_O Logo" /></div>
+      <p>© 2025 Tradi_O. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const products = [
+      { id: 1, name: "Dupatta Collection", price: 509, image: "./img/dupatta1.jpg", quantity: 1 },
+      { id: 2, name: "Elegant Dupatta", price: 499, image: "./img/dupatta2.jpg", quantity: 1 },
+      { id: 3, name: "Traditional Dupatta", price: 599, image: "./img/dupatta3.jpg", quantity: 1 },
+      { id: 4, name: "Colourful Dupatta", price: 459, image: "./img/dupatta4.jpg", quantity: 1 }
+    ];
+    const productList = document.getElementById('productList');
+    products.forEach(product => {
+      const box = document.createElement('div');
+      box.classList.add('box');
+      box.innerHTML = `
+        <u>MRP: ₹${product.price}</u>
+        <img src="${product.image}" class="image" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.name.includes("Colourful") ? "Add a touch of tradition with our stunning colourful dupatta." : "Experience elegance with our beautiful dupatta."}</p>
+        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+      `;
+      productList.appendChild(box);
+    });
+    function addToCart(productId) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      const existingItem = cart.find(item => item.id === productId);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ ...product });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateNavCart();
+      alert("Item added to cart!");
+    }
+  </script>
+</body>
+</html>

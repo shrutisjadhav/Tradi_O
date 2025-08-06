@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="cart.css" />
+  <link rel="icon" type="image/x-icon" href="./img/logo.png" />
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <div class="cart-container">
+    <h1>Shopping Cart</h1>
+    <div id="cartList" class="cart-list"></div>
+    <div id="cartTotal" class="cart-total"></div>
+    <button id="checkoutBtn" class="checkout-btn">Checkout</button>
+    <a href="index.html" class="back-link">← Continue Shopping</a>
+  </div>
+  <a href="cart.html" class="navCart" style="position: fixed; top: 12px; right: 26px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+    <img src="./img/cart.png" width="38px" alt="cart" />
+    <h4>Cart <span>(0)</span></h4>
+    <span id="cartSubtotal" style="margin-left: 10px; font-weight: bold;">₹0</span>
+  </a>
+</body>
+</html>
